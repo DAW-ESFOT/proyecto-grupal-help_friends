@@ -19,7 +19,7 @@ class ArticlesTableSeeder extends Seeder
         for($i = 0; $i < 50; $i++) {
             Articles::create([
                 'image'=>$faker->image(),
-                'description' => $faker->paragraph,
+                'description' => $faker->text,
                 'comentary' => $faker->paragraph,
             ]);
         }
