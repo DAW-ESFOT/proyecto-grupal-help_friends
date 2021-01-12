@@ -13,7 +13,7 @@ class AddCategoriesIdColumnSubcategories extends Migration
      */
     public function up()
     {
-        Schema::table('subcategories', function (Blueprint $table) {
+        Schema::table('sub_categories', function (Blueprint $table) {
             $table->unsignedBigInteger('categories_id');
             $table->foreign('categories_id')->references('id')->on('categories')->onDelete('restrict');
         });
@@ -27,7 +27,7 @@ class AddCategoriesIdColumnSubcategories extends Migration
      */
     public function down()
     {
-        Schema::table('subcategories', function (Blueprint $table) {
+        Schema::table('sub_categories', function (Blueprint $table) {
             $table->dropForeign(['categories_id']);
         });
         }
