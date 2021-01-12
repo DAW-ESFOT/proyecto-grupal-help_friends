@@ -15,7 +15,7 @@ class AddSubCategoryIdColumnArticles extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->unsignedBigInteger('subCategory_id');
-            $table->foreign('subCategory_id')->references('id')->on('subcategories')->onDelete('restrict');
+            $table->foreign('subCategory_id')->references('id')->on('sub_categories')->onDelete('restrict');
         });
     }
 

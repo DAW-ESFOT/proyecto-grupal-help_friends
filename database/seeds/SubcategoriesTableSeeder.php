@@ -1,9 +1,9 @@
 <?php
 
-use App\Category;
+use App\SubCategory;
 use Illuminate\Database\Seeder;
 
-class CategoryTableSeeder extends Seeder
+class SubcategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +13,13 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         // Vaciar la tabla.
-        Category::truncate();
+        SubCategory::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 10; $i++) {
-            Category::create([
-                'name_category' => $faker->sentence,
+        for ($i = 0; $i < 50; $i++) {
+            SubCategory::create([
+                'name_subcategory' => $faker->sentence,
+                'categories_id' => $faker->numberBetween(1, 10),
             ]);
         }
     }
