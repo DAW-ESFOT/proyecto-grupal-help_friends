@@ -19,6 +19,20 @@ use Illuminate\Http\Request;
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
 Route::get('articles', 'ArticleController@index');
+
+
+Route::get('comentaries', 'ComentaryController@index');
+Route::get('comentaries/{comentary}', 'ComentaryController@show');
+Route::post('comentaries', 'ComentaryController@store');
+Route::put('comentaries/{comentary}', 'ComentaryController@update');
+Route::delete('comentaries/{comentary}', 'ComentaryController@delete');
+
+Route::get('categories', 'CategoryController@index');
+Route::get('categories/{category}', 'CategoryController@show');
+Route::post('categories', 'CategoryController@store');
+Route::put('categories/{category}', 'CategoryController@update');
+Route::delete('categories/{category}', 'CategoryController@delete');
+
 Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::get('user', 'UserController@getAuthenticatedUser');
