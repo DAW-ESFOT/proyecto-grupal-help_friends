@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Articles extends Model
 {
-    protected $fillable = ['image', 'description', 'comentary',];
+    protected $fillable = [ 'description',];
 
     public function user() {
         return $this->belongsTo('App\User');
@@ -20,5 +20,6 @@ class Articles extends Model
     }
 
     public function images() {
-        return $this->hasMany('App\Image'); }
+        //return $this->hasMany('App\Image'); }
     }
+}
