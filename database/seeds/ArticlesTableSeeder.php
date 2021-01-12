@@ -16,11 +16,13 @@ class ArticlesTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         // Crear artículos ficticios en la tabla
-        for($i = 0; $i < 50; $i++) {
+        for($i = 0; $i < 20; $i++) {
             Articles::create([
-                'image'=>$faker->image(),
+                
                 'description' => $faker->text,
-                'comentary' => $faker->paragraph,
+                'user_id' => $faker->numberBetween(1, 3),
+                'user_id_pub' => $faker->numberBetween(1, 3),
+                'subCategory_id' => $faker->numberBetween(1, 3),
             ]);
         }
     }
