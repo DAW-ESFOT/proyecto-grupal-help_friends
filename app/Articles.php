@@ -14,6 +14,11 @@ class Articles extends Model
     public function comentary() {
         return $this->hasMany('App\Comentary');
     }
+    
+    public function subCategory(){
+        return $this->belongsTo('App\SubCategory');
+    }
+
     public function images() {
         return $this->hasMany('App\Image'); }
-}
+    }
