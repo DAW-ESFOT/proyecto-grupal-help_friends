@@ -14,4 +14,6 @@ class Articles extends Model
     public function comentary() {
         return $this->hasMany('App\Comentary');
     }
+    public function images() {
+        return $this->hasMany('App\Image'); }
 }
