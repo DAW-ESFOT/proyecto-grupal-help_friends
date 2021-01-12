@@ -33,6 +33,8 @@ Route::post('categories', 'CategoryController@store');
 Route::put('categories/{category}', 'CategoryController@update');
 Route::delete('categories/{category}', 'CategoryController@delete');
 
+Route::get('users', 'UserController@index');
+
 Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::get('user', 'UserController@getAuthenticatedUser');
