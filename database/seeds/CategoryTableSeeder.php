@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
         // Crear artículos ficticios en la tabla
         for ($i = 0; $i < 10; $i++) {
             Category::create([
-                'name_category' => $faker->sentence,
+                'name' => $faker->sentence,
             ]);
         }
     }

@@ -18,7 +18,7 @@ class SubcategoriesTableSeeder extends Seeder
         // Crear artículos ficticios en la tabla
         for ($i = 0; $i < 50; $i++) {
             SubCategory::create([
-                'name_subcategory' => $faker->sentence,
+                'name' => $faker->sentence,
                 'categories_id' => $faker->numberBetween(1, 10),
             ]);
         }
