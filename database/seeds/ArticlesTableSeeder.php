@@ -20,6 +20,7 @@ class ArticlesTableSeeder extends Seeder
             Articles::create([
                 
                 'description' => $faker->text,
+                'commentary' => $faker->text,
                 'user_id' => $faker->numberBetween(1, 3),
                 'user_id_pub' => $faker->numberBetween(1, 3),
                 'subCategory_id' => $faker->numberBetween(1, 3),
