@@ -16,7 +16,8 @@ class ArticlesTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         // Crear artículos ficticios en la tabla
-        for($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 20; $i++) {
+            $image_name = $faker->image('public/storage/articles', 400, 300, null, false);
             Articles::create([
 
                 'name' => $faker->word,
@@ -25,6 +26,9 @@ class ArticlesTableSeeder extends Seeder
                 'user_id' => $faker->numberBetween(1, 3),
                 'user_id_pub' => $faker->numberBetween(1, 3),
                 'subCategory_id' => $faker->numberBetween(1, 3),
+                'image'=>'articles'.$image_name
+                //'image'=>$faker->imageUrl(400,300,null,false),
+
             ]);
         }
     }
