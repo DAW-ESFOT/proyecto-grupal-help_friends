@@ -34,11 +34,12 @@ Route::put('categories/{category}', 'CategoryController@update');
 Route::delete('categories/{category}', 'CategoryController@delete');
 
 Route::get('users', 'UserController@index');
+Route::get('articles/{article}/image','ArticleController@image');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 
-    Route::get('user', 'UserController@getAuthenticatedUser');
     Route::get('articles/{article}', 'ArticleController@show');
+    Route::get('user', 'UserController@getAuthenticatedUser');
     Route::post('articles', 'ArticleController@store');
     Route::put('articles/{article}', 'ArticleController@update');
     Route::delete('articles/{article}', 'ArticleController@delete');
