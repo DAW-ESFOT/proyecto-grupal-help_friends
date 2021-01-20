@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Articles;
+use App\Http\Resources\Article as ArticleResource;
+use App\Http\Resources\ArticleCollection;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\Providers\Storage;
 
@@ -10,12 +12,22 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        return Articles::all();
+        //return new ArticleResource(Articles::all());
+        //return Articles::all();
+        //return ArticleResource::collection(Articles::all());
+        //Que devuelva directamente sin data
+        //return response()->json(new ArticleCollection(Articles::all()), 200);
+
+        //Verificar la paginacion con link al final
+        return new ArticleCollection(Articles::paginate());
+
+        //return  response()->json(ArticleResource::collection(Articles::all()), 200);
     }
 
-    public function show($id)
+    public function show(Articles $article)
     {
-        return Articles::find($id);
+        //return new ArticleResource($article);
+        return response()->json(new ArticleResource($article),200);
     }
 
     public function image(Articles $article){
@@ -37,17 +49,17 @@ class ArticleController extends Controller
         return response()->json($article, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Articles $article)
     {
-        $article = Articles::findOrFail($id);
+
         $article->update($request->all());
-        return $article;
+        return response()->json($article, 200);
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, Articles $article)
     {
-        $article = Articles::findOrFail($id);
+
         $article->delete();
-        return 204;
+        return response()->json(null,204);
     }
 }
