@@ -5,11 +5,31 @@ namespace App\Http\Controllers;
 use App\Articles;
 use App\Http\Resources\Article as ArticleResource;
 use App\Http\Resources\ArticleCollection;
+use http\Message;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\Providers\Storage;
 
 class ArticleController extends Controller
 {
+
+    private static $rules=[
+        'name' => 'required|string|unique:articles|max:100',
+        'description' => 'required',
+        'commentary' => 'required',
+
+        // 'description' => 'required|string:articles|max:255',
+        //'image' => 'required|image|dimensions:min_width=200,min_height:200'
+
+    ];
+
+    private static $messages=[
+        'required'=>'El campo :attribute es obligatorio.',
+        'name.required'=>'El nombre no es valido',
+        'description.required'=>'La descricion no es valido',
+        'commentary.required'=>'El El comentario no es valido',
+
+    ];
+
     public function index()
     {
         //return new ArticleResource(Articles::all());
@@ -45,11 +65,31 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        //MENSAJES
+
+
+
+        $request->validate(self::$rules,self::$messages);
+
+           // 'description' => 'required|string:articles|max:255',
+            //'image' => 'required|image|dimensions:min_width=200,min_height:200',
+
+
+        //VALIDACION DE DATOS ARTICLE
+
+        /*
         $request->validate([
-            'description' => 'required|string:articles|max:255',
-            'image' => 'required|image|dimensions:min_width=200,min_height:200',
-        ]);
+            'name' => 'required|string|unique:articles|max:100',
+            'description' => 'required',
+            'commentary' => 'required',
+        ],$messages);*/
+
+
+
+
         //$article = Articles::create($request->all());
+
+
         $article=new Articles(($request->all()));
         $path = $request->image->store('public/articles');//este metodo devuelve la ruta
 
@@ -57,6 +97,7 @@ class ArticleController extends Controller
         $article->save();
         return response()->json($article, 201);
     }
+
 
     public function update(Request $request, Articles $article)
     {
