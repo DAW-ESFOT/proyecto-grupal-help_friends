@@ -33,6 +33,15 @@ class ArticleController extends Controller
     public function image(Articles $article){
         return response()->download(public_path(Storage::url($article->image)),$article->title);//en POSTMAN si quiere ver una imagen, tienes que descargar
     }
+    // manejar el status de los articulos
+    public function updateStatus(Request $request, Articles $article) {
+        // validar el valor estados
+        $status = $request->get('status');
+        $article->status = $status;
+        $article->save();
+
+        return response()->json($article, 201);
+    }
 
     public function store(Request $request)
     {

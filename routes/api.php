@@ -43,4 +43,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('articles', 'ArticleController@store');
     Route::put('articles/{article}', 'ArticleController@update');
     Route::delete('articles/{article}', 'ArticleController@delete');
+
+    //apuntar al controlador articles para manejar el status
+    //Route::put('articles/{article}/status', 'ArticleController@updateStatus');
+    //Route::put('articles/{article}/final_comment', 'ArticleController@setFinalComment');
 });
