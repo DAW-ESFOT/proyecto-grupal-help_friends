@@ -33,6 +33,12 @@ Route::post('categories', 'CategoryController@store');
 Route::put('categories/{category}', 'CategoryController@update');
 Route::delete('categories/{category}', 'CategoryController@delete');
 
+Route::get('subcategories', 'SubCategoryController@index');
+Route::get('subcategories/{subcategory}', 'SubCategoryController@show');
+Route::post('subcategories', 'SubCategoryController@store');
+Route::put('subcategories/{subcategory}', 'SubCategoryController@update');
+Route::delete('subcategories/{subcategory}', 'SubCategoryController@delete');
+
 Route::get('users', 'UserController@index');
 Route::get('articles/{article}/image','ArticleController@image');
 
