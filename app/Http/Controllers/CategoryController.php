@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Category\Resources\Category as CategoryResources;
 
 class CategoryController extends Controller
 {
@@ -14,6 +15,7 @@ class CategoryController extends Controller
     }
     public function show($id)
     {
+        //return response()->json(new CategoryResources($id), 200);
         return Category::find($id);
     }
     public function store(Request $request)
