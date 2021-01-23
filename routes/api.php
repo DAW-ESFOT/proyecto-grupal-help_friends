@@ -40,7 +40,14 @@ Route::put('subcategories/{subcategory}', 'SubCategoryController@update');
 Route::delete('subcategories/{subcategory}', 'SubCategoryController@delete');
 
 Route::get('users', 'UserController@index');
-Route::get('articles/{article}/image','ArticleController@image');
+
+Route::get('images','ImageController@index');
+Route::get('images/{image}','ImageController@show');
+Route::get('images/{image}/image','ImageController@image');
+Route::post('images','ImageController@store');
+Route::put('images/{image}','ImageController@update');
+Route::delete('images/{image}','ImageController@delete');
+
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 
