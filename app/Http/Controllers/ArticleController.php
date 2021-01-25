@@ -10,6 +10,21 @@ use Tymon\JWTAuth\Contracts\Providers\Storage;
 
 class ArticleController extends Controller
 {
+
+    private static $rules=[
+        'name' => 'required|string|unique:articles|max:100',
+        'description' => 'required',
+        'commentary' => 'required',
+    ];
+
+    private static $messages=[
+        'required'=>'El campo :attribute es obligatorio.',
+        'name.required'=>'El nombre no es valido',
+        'description.required'=>'La descricion no es valido',
+        'commentary.required'=>'El comentario no es valido',
+    ];
+
+
     public function index()
     {
         //return new ArticleResource(Articles::all());
@@ -43,15 +58,10 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'description' => 'required|string:articles|max:255',
-        ]);
+        $request->validate(self::$rules,self::$messages);
+
         $article = Articles::create($request->all());
-//        $article=new Articles(($request->all()));
-//        $path = $request->image->store('public/articles');//este metodo devuelve la ruta
-//
-//        $article->image=$path;
-//        $article->save();
+
         return response()->json($article, 201);
     }
 
