@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Articles;
+use App\Article;
 use App\Http\Resources\Article as ArticleResource;
 use App\Http\Resources\ArticleCollection;
 use Illuminate\Http\Request;
@@ -27,19 +27,19 @@ class ArticleController extends Controller
 
     public function index()
     {
-        //return new ArticleResource(Articles::all());
-        //return Articles::all();
-        //return ArticleResource::collection(Articles::all());
+        //return new ArticleResource(Article::all());
+        //return Article::all();
+        //return ArticleResource::collection(Article::all());
         //Que devuelva directamente sin data
-        //return response()->json(new ArticleCollection(Articles::all()), 200);
+        //return response()->json(new ArticleCollection(Article::all()), 200);
 
         //Verificar la paginacion con link al final
-        return new ArticleCollection(Articles::paginate());
+        return new ArticleCollection(Article::paginate());
 
-        //return  response()->json(ArticleResource::collection(Articles::all()), 200);
+        //return  response()->json(ArticleResource::collection(Article::all()), 200);
     }
 
-    public function show(Articles $article)
+    public function show(Article $article)
     {
         //return new ArticleResource($article);
         return response()->json(new ArticleResource($article),200);
@@ -47,7 +47,7 @@ class ArticleController extends Controller
 
 
     // manejar el status de los articulos
-    public function updateStatus(Request $request, Articles $article) {
+    public function updateStatus(Request $request, Article $article) {
         // validar el valor estados
         $status = $request->get('status');
         $article->status = $status;
@@ -60,19 +60,19 @@ class ArticleController extends Controller
     {
         $request->validate(self::$rules,self::$messages);
 
-        $article = Articles::create($request->all());
+        $article = Article::create($request->all());
 
         return response()->json($article, 201);
     }
 
-    public function update(Request $request, Articles $article)
+    public function update(Request $request, Article $article)
     {
 
         $article->update($request->all());
         return response()->json($article, 200);
     }
 
-    public function delete(Request $request, Articles $article)
+    public function delete(Request $request, Article $article)
     {
 
         $article->delete();

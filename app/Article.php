@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Articles extends Model
+class Article extends Model
 {
     protected $fillable = ['name', 'description', 'commentary','subCategory_id'];
 
@@ -23,9 +23,9 @@ class Articles extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function comentary()
+    public function comments()
     {
-        return $this->hasMany('App\Comentary');
+        return $this->hasMany('App\Comment');
     }
 
     public function subCategory()

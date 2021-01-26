@@ -3,7 +3,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComentariesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateComentariesTable extends Migration
              $table->string('description');
              $table->timestamps();
          });*/
-        Schema::create('comentaries', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('description');
             $table->unsignedBigInteger('article_id');
@@ -38,3 +38,4 @@ class CreateComentariesTable extends Migration
         Schema::dropIfExists('comentaries');
     }
 }
+
