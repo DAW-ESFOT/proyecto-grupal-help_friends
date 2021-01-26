@@ -1,6 +1,6 @@
 <?php
 
-use App\Articles;
+use App\Article;
 use Illuminate\Database\Seeder;
 
 class ArticlesTableSeeder extends Seeder
@@ -13,7 +13,7 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
         //Vaciar la tabla articles
-        Articles::truncate();
+        Article::truncate();
         $faker = \Faker\Factory::create();
 
         //Obtenemos la lista de todos los usuarios creados e
@@ -26,7 +26,7 @@ class ArticlesTableSeeder extends Seeder
 
             //y ahora con este usuario creamos algunos articulos
             for ($i = 0; $i < 5; $i++) {
-                Articles::create([
+                Article::create([
                     'name' => $faker->word,
                     'description' => $faker->text,
                     'commentary' => $faker->text,

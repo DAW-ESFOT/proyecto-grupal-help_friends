@@ -1,7 +1,8 @@
 <?php
 
-use App\Comentary;
+use App\Comment;
 use Illuminate\Database\Seeder;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ComentaryTableSeeder extends Seeder
 {
@@ -12,14 +13,30 @@ class ComentaryTableSeeder extends Seeder
      */
     public function run()
     {
-        // Vaciar la tabla.
-        Comentary::truncate();
+        // Vaciamos la tabla comments
+        Comment::truncate();
         $faker = \Faker\Factory::create();
-        // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
-            Comentary::create([
-                'description' => $faker->sentence,
-            ]);
+
+        // Obtenemos todos los artículos de la bdd
+        $articles = App\Article::all();
+
+        // Obtenemos todos los usuarios
+        $users = App\User::all();
+        foreach ($users as $user) {
+            // iniciamos sesión con cada uno
+            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+
+            // Creamos un comentario para cada artículo con este usuario
+            foreach ($articles as $article) {
+                Comment::create([
+                    'description' => $faker->text,
+                    'article_id' => $article->id,
+                    'user_id'=> $user->id,
+                ]);
+            }
         }
+
+
+
     }
 }
