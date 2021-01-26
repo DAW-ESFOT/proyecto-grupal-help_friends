@@ -60,13 +60,14 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('subcategories/{subcategory}', 'SubCategoryController@delete');
 
     //COMENTARIOS
-//    Route::get('comentaries', 'ComentaryController@index');
+ //Route::get('comentaries', 'ComentaryController@index');
 //    Route::get('comentaries/{comentary}', 'ComentaryController@show');
 //    Route::post('comentaries', 'ComentaryController@store');
 //    Route::put('comentaries/{comentary}', 'ComentaryController@update');
 //    Route::delete('comentaries/{comentary}', 'ComentaryController@delete');
-    
+
     Route::get('articles/{article}/comentary', 'ComentaryController@index');
+
     Route::get('articles/{article}/comentary/{comentary}', 'ComentaryController@show');
     Route::post('articles/{article}/comentary', 'ComentaryController@store');
     Route::put('articles/{article}/comentary/{comentary}', 'ComentaryController@update');
