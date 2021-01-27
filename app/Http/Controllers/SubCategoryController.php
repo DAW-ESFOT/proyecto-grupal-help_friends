@@ -8,9 +8,9 @@ use App\Category\Resources\SubCategory as SubCategoryResources;
 
 class SubCategoryController extends Controller
 {
-    public function index()
+    public function index(Article $article)
     {
-        return SubCategory::all();
+        return response()->json(SubCategoryResources::collection($article->subcategories), 200);
     }
     public function show($id)
     {

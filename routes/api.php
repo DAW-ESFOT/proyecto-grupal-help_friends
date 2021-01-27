@@ -46,19 +46,19 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('images/{image}','ImageController@delete');
 
     //CATEGORIES
-    Route::get('categories', 'CategoryController@index');
-    Route::get('categories/{category}', 'CategoryController@show');
-    Route::post('categories', 'CategoryController@store');
-    Route::put('categories/{category}', 'CategoryController@update');
-    Route::delete('categories/{category}', 'CategoryController@delete');
+    Route::get('articles/{article}/subcategories/{subcategory}/categories', 'CategoryController@index');
+    Route::get('articles/{article}/subcategories/{subcategory}/categories/{category}', 'CategoryController@show');
+    Route::post('articles/{article}/subcategories/{subcategory}/categories', 'CategoryController@store');
+    Route::put('articles/{article}/subcategories/{subcategory}/categories/{category}', 'CategoryController@update');
+    Route::delete('articles/{article}/subcategories/{subcategory}/categories/{category}', 'CategoryController@delete');
 
 
     //SUBCATEGRIES
-    Route::get('subcategories', 'SubCategoryController@index');
-    Route::get('subcategories/{subcategory}', 'SubCategoryController@show');
-    Route::post('subcategories', 'SubCategoryController@store');
-    Route::put('subcategories/{subcategory}', 'SubCategoryController@update');
-    Route::delete('subcategories/{subcategory}', 'SubCategoryController@delete');
+    Route::get('articles/{article}/subcategories', 'SubCategoryController@index');
+    Route::get('articles/{article}/subcategories/{subcategory}', 'SubCategoryController@show');
+    Route::post('articles/{article}/subcategories', 'SubCategoryController@store');
+    Route::put('articles/{article}/subcategories/{subcategory}', 'SubCategoryController@update');
+    Route::delete('articles/{article}/subcategories/{subcategory}', 'SubCategoryController@delete');
 
 
 
