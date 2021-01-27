@@ -15,7 +15,7 @@ class AddUserIdPubColumnArticle extends Migration
     {
         Schema::table('articles',
             function (Blueprint $table) {
-                $table->unsignedBigInteger('user_id_pub');
+                $table->unsignedBigInteger('user_id_pub')->nullable();
                 $table->foreign('user_id_pub')->references('id')->on('users')->onDelete('restrict');
             });
     }

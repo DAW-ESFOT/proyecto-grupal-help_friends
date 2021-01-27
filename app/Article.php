@@ -14,7 +14,7 @@ class Article extends Model
         parent::boot();
         static::creating(function ($article) {
             $article->user_id = Auth::id();
-            $article->user_id_pub = Auth::id();
+
         });
     }
 

@@ -66,7 +66,7 @@ class ArticleController extends Controller
         $this->authorize('create', Article::class);
 
         $request->validate([
-            'name' => 'required|string|unique:articles|max:100',
+            'name' => 'required|string|max:100',
             'description' => 'required',
             'commentary' => 'required',
 
