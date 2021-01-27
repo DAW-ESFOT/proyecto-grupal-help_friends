@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
 Route::get('articles', 'ArticleController@index');
+Route::get('images','ImageController@index');
 
 //OJO
 Route::get('users', 'UserController@index');
@@ -33,8 +34,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('articles/{article}', 'ArticleController@delete');
 
     //Apuntar al controlador articles para manejar el status
-    //Route::put('articles/{article}/status', 'ArticleController@updateStatus');
-    //Route::put('articles/{article}/final_comment', 'ArticleController@setFinalComment');
+    Route::put('articles/{article}/status', 'ArticleController@updateStatus');
+    Route::put('articles/{article}/final_comment', 'ArticleController@setFinalComment');
 
     //IMAGES
     Route::get('images','ImageController@index');
@@ -59,16 +60,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::put('subcategories/{subcategory}', 'SubCategoryController@update');
     Route::delete('subcategories/{subcategory}', 'SubCategoryController@delete');
 
-    //COMENTARIOS
-   /*Route::get('comentaries', 'CommentController@index');
-   Route::get('comentaries/{comentary}', 'CommentController@show');
-   Route::post('comentaries', 'CommentController@store');
-   Route::put('comentaries/{comentary}', 'CommentController@update');
-   Route::delete('comentaries/{comentary}', 'CommentController@delete');*/
+
 
     Route::get('articles/{article}/comments', 'CommentController@index');
-    Route::get('articles/{article}/comments/{comments}', 'CommentController@show');
+    Route::get('articles/{article}/comments/{comment}', 'CommentController@show');
     Route::post('articles/{article}/comments', 'CommentController@store');
-    Route::put('articles/{article}/comments/{comments}', 'CommentController@update');
-    Route::delete('articles/{article}/comments/{comments}', 'ComentaryControllerr@delete');
+    Route::put('articles/{article}/comments/{comment}', 'CommentController@update');
+    Route::delete('articles/{article}/comments/{comment}', 'ComentaryControllerr@delete');
 });

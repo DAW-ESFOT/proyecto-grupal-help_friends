@@ -11,11 +11,11 @@ use Tymon\JWTAuth\Contracts\Providers\Storage;
 class ArticleController extends Controller
 {
 
-    private static $rules=[
-        'name' => 'required|string|unique:articles|max:100',
-        'description' => 'required',
-        'commentary' => 'required',
-    ];
+//    private static $rules=[
+//        'name' => 'required|string|unique:articles|max:100',
+//        'description' => 'required',
+//        'commentary' => 'required',
+//    ];
 
     private static $messages=[
         'required'=>'El campo :attribute es obligatorio.',
@@ -27,20 +27,22 @@ class ArticleController extends Controller
 
     public function index()
     {
-        //return new ArticleResource(Article::all());
-        //return Article::all();
-        //return ArticleResource::collection(Article::all());
+        //return new ArticleResource(Articles::all());
+        //return Articles::all();
+        //return ArticleResource::collection(Articles::all());
         //Que devuelva directamente sin data
-        //return response()->json(new ArticleCollection(Article::all()), 200);
+        //return response()->json(new ArticleCollection(Articles::all()), 200);
 
         //Verificar la paginacion con link al final
-        return new ArticleCollection(Article::paginate());
 
-        //return  response()->json(ArticleResource::collection(Article::all()), 200);
+        return new ArticleCollection(Article::paginate(10));
+
+        //return  response()->json(ArticleResource::collection(Articles::all()), 200);
     }
 
     public function show(Article $article)
     {
+        $this->authorize('view', $article);
         //return new ArticleResource($article);
         return response()->json(new ArticleResource($article),200);
     }
@@ -56,17 +58,39 @@ class ArticleController extends Controller
         return response()->json($article, 201);
     }
 
+
+
     public function store(Request $request)
     {
-        $request->validate(self::$rules,self::$messages);
+
+        $this->authorize('create', Article::class);
+
+        $request->validate([
+            'name' => 'required|string|unique:articles|max:100',
+            'description' => 'required',
+            'commentary' => 'required',
+
+        ],self::$messages);
+
+
 
         $article = Article::create($request->all());
 
-        return response()->json($article, 201);
+        return response()->json(new ArticleResource($article), 201);
     }
+
+
 
     public function update(Request $request, Article $article)
     {
+        $this->authorize('update', $article);
+        $request->validate([
+            'name' => 'required|string|unique:articles|max:100',
+            'description' => 'required',
+            'commentary' => 'required',
+
+        ],self::$messages);
+
 
         $article->update($request->all());
         return response()->json($article, 200);
@@ -74,7 +98,7 @@ class ArticleController extends Controller
 
     public function delete(Request $request, Article $article)
     {
-
+        $this->authorize('delete', $article);
         $article->delete();
         return response()->json(null,204);
     }

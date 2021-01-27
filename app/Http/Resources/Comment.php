@@ -16,11 +16,10 @@ class Comment extends JsonResource
     {
         return [
             'id' => $this->id,
-            'descritin' => $this->text,
+            'descrition' => $this->descrition,
             'user' => '/api/users/' . $this->user_id,
             'article' => "/api/articles/" . $this->article_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+
         ];
     }
 }
