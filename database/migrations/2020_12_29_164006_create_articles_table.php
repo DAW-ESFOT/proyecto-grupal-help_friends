@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('commentary');
+            $table->string('commentary')->nullable();
             $table->timestamps();
         });
     }
