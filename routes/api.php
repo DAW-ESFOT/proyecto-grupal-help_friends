@@ -29,6 +29,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::get('articles/{article}', 'ArticleController@show');
     Route::get('user', 'UserController@getAuthenticatedUser');
+//    Route::get('articles/{article}/image', 'UserController@image');
     Route::post('articles', 'ArticleController@store');
     Route::put('articles/{article}', 'ArticleController@update');
     Route::delete('articles/{article}', 'ArticleController@delete');
@@ -38,10 +39,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::put('articles/{article}/final_comment', 'ArticleController@setFinalComment');
 
     //IMAGES
-    Route::get('images','ImageController@index');
-    Route::get('images/{image}','ImageController@show');
-    Route::get('images/{image}/image','ImageController@image');
-    Route::post('images','ImageController@store');
+    Route::get('articles/{article}/images','ImageController@bounch');
+    Route::get('articles/{article}/images/{image}','ImageController@show');
+    Route::post('articles/{article}/images','ImageController@store');
     Route::put('images/{image}','ImageController@update');
     Route::delete('images/{image}','ImageController@delete');
 

@@ -28,7 +28,7 @@ class User extends Authenticatable implements JWTSubject
 
     private const ROLES_HIERARCHY = [
         //self::ROLE_ADMIN => [self::ROLE_USER],
-        self::ROLE_USER=> [self::ROLE_USER]
+        self::ROLE_USER => [self::ROLE_USER]
     ];
 
     /**
@@ -59,11 +59,20 @@ class User extends Authenticatable implements JWTSubject
         return [];
 
     }
-    public function articles() {
+
+    public function articles()
+    {
         return $this->hasMany('App\Article');
     }
-    public function comments() {
+
+    public function comments()
+    {
         return $this->hasMany('App\Comment');
+    }
+
+    public function image()
+    {
+        return $this->hasMany('App\Image');
     }
 
     //ROLES

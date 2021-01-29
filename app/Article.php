@@ -14,7 +14,6 @@ class Article extends Model
         parent::boot();
         static::creating(function ($article) {
             $article->user_id = Auth::id();
-
         });
     }
 
@@ -31,5 +30,8 @@ class Article extends Model
     public function subCategory()
     {
         return $this->belongsTo('App\SubCategory');
+    }
+    public function image(){
+        return $this->hasMany('App\Image');
     }
 }
