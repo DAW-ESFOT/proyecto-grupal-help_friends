@@ -30,11 +30,11 @@ class ImageController extends Controller
     public function store(Request $request,Article $article)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string',
+
             'image' => 'required|image|dimensions:min_width=200,min_height:200',
         ]);
 
-        $image = new Image($request->all());
+        $image = $article ->image()->save(new Image($request->all()));
         $path = $request->image->store('public/images');
         $image->image = $path;
         $image->save();

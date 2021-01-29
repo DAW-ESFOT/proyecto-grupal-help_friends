@@ -18,9 +18,9 @@ class CommentController extends Controller
     public function index(Article $article)
     {
 
-        $article->comments($article->comments)->firstOrFail();
-        return response()->json($article, 200);
-       // return response()->json(CommentResource::collection($article->comments), 200);
+     //   $article->comments($article->comments)->firstOrFail();
+      //  return response()->json($article, 200);
+       return response()->json(CommentResource::collection($article->comments), 200);
     }
 
     /**
@@ -41,7 +41,7 @@ class CommentController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param Article $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request, Article $article)
     {

@@ -63,7 +63,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('subcategories/{subcategory}', 'SubCategoryController@delete');
 
 
-
+    //COMMENTS
     Route::get('articles/{article}/comments/{comment}', 'CommentController@show');
     Route::post('articles/{article}/comments', 'CommentController@store');
     Route::put('articles/{article}/comments/{comment}', 'CommentController@update');
