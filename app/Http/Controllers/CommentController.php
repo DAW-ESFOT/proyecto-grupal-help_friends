@@ -17,7 +17,10 @@ class CommentController extends Controller
      */
     public function index(Article $article)
     {
-        return response()->json(CommentResource::collection($article->comments), 200);
+
+        $article->comments($article->comments)->firstOrFail();
+        return response()->json($article, 200);
+       // return response()->json(CommentResource::collection($article->comments), 200);
     }
 
     /**
@@ -43,7 +46,7 @@ class CommentController extends Controller
     public function store(Request $request, Article $article)
     {
         $request->validate([
-            'text' => 'required|string'
+            'description' => 'required|string'
         ]);
 
         $comment = $article->comments()->save(new Comment($request->all()));
@@ -59,7 +62,17 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+
+        $this->authorize('update', $comment);
+        $request->validate([
+            'description' => 'required',
+            //'commentary' => 'required',
+
+        ],self::$messages);
+
+
+        $comment->update($request->all());
+        return response()->json($comment, 200);
     }
 
     /**

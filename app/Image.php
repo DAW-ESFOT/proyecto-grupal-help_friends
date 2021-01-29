@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Image extends Model
 {
+
 //    public static function boot()
 //    {
 //        parent::boot();
@@ -16,6 +17,7 @@ class Image extends Model
 //        });
 //    }
     protected $fillable = ['name', 'image'];
+
 
     public function article()
     {

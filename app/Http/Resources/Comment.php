@@ -15,10 +15,17 @@ class Comment extends JsonResource
     public function toArray($request)
     {
         return [
+//            'id' => $this->id,
+//            'description' => $this->description,
+//            //'user' => '/api/users/' . $this->user_id,
+//            'Sub_Categories' => "/api/sub_categories/" . $this->categories_id,
+
             'id' => $this->id,
-            'descrition' => $this->descrition,
-            'user' => '/api/users/' . $this->user_id,
-            'article' => "/api/articles/" . $this->article_id,
+            'description' => $this->description,
+            'user' => "/api/users".$this->user_id,
+            'article' => "/api/article".$this->article_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
 
         ];
     }

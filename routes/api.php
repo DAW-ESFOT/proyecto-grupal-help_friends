@@ -20,6 +20,8 @@ Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
 Route::get('articles', 'ArticleController@index');
 Route::get('images','ImageController@index');
+Route::get('articles/{article}/comments', 'CommentController@index');
+
 
 //OJO
 Route::get('users', 'UserController@index');
@@ -62,7 +64,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 
 
-    Route::get('articles/{article}/comments', 'CommentController@index');
     Route::get('articles/{article}/comments/{comment}', 'CommentController@show');
     Route::post('articles/{article}/comments', 'CommentController@store');
     Route::put('articles/{article}/comments/{comment}', 'CommentController@update');

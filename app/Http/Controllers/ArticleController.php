@@ -66,9 +66,9 @@ class ArticleController extends Controller
         $this->authorize('create', Article::class);
 
         $request->validate([
-            'name' => 'required|string|max:100',
+            'name' => 'required|unique:articles|string|max:100',
             'description' => 'required',
-            'commentary' => 'required',
+            //'commentary' => 'required',
 
         ],self::$messages);
 
@@ -85,9 +85,9 @@ class ArticleController extends Controller
     {
         $this->authorize('update', $article);
         $request->validate([
-            'name' => 'required|string|unique:articles|max:100',
+            'name' => 'required|unique:articles|string|max:100',
             'description' => 'required',
-            'commentary' => 'required',
+            //'commentary' => 'required',
 
         ],self::$messages);
 
