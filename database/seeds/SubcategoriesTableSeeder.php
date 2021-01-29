@@ -16,10 +16,11 @@ class SubcategoriesTableSeeder extends Seeder
         SubCategory::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 10; $i++) {
+
+        for ($i = 0; $i < 5; $i++) {
             SubCategory::create([
                 'name' => $faker->sentence,
-                'categories_id' => $faker->numberBetween(1, 10),
+                'categories_id' => $faker->numberBetween(1, 3),
             ]);
         }
     }

@@ -1,7 +1,9 @@
 <?php
 
 use App\Image;
+use App\User;
 use Illuminate\Database\Seeder;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ImagesTableSeeder extends Seeder
 {
@@ -17,13 +19,16 @@ class ImagesTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         $articles = App\Article::all();
-        foreach ($articles as $article) {
-            Image::create([
-                'name' => $faker->word,
-                'image' => $faker->imageUrl(),
-                'article_id' => $article->id
-            ]);
 
+        foreach ($articles as $article) {
+            for ($i = 0; $i < 2; $i++) {
+                Image::create([
+                    'name' => $faker->word,
+                    'image' => $faker->imageUrl(),
+                    'article_id' => $article->id,
+                    'user_id' => $faker->numberBetween(1, 10)
+                ]);
+            }
         }
     }
 }

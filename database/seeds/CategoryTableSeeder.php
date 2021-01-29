@@ -16,7 +16,7 @@ class CategoryTableSeeder extends Seeder
         Category::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             Category::create([
                 'name' => $faker->sentence,
             ]);

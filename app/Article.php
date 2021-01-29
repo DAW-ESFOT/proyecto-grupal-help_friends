@@ -34,9 +34,8 @@ class Article extends Model
     {
         return $this->belongsTo('App\SubCategory');
     }
-
-//    public function image(){
-//        return $this->hasMany('App\Image');
-//    }
+    public function image(){
+        return $this->hasMany('App\Image');
+    }
 
 }

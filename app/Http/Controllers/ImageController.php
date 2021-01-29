@@ -27,12 +27,13 @@ class ImageController extends Controller
         return response()->json(new ImageResource($image), 200);
     }
 
-    public function store(Request $request)
+    public function store(Request $request,Article $article)
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
             'image' => 'required|image|dimensions:min_width=200,min_height:200',
         ]);
+
         $image = new Image($request->all());
         $path = $request->image->store('public/images');
         $image->image = $path;
