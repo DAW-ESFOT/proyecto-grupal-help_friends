@@ -25,16 +25,22 @@ class ArticlesTableSeeder extends Seeder
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
 
             //y ahora con este usuario creamos algunos articulos
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i <20 ; $i++) {
                 Article::create([
                     'name' => $faker->word,
                     'description' => $faker->text,
-                    'commentary' => $faker->text,
-                    'user_id_pub' => $faker->numberBetween(1, 3),
+                   
                     'subCategory_id' => $faker->numberBetween(1, 3),
 
                 ]);
             }
+            Article::create([
+                    'name' => $faker->word,
+                    'description' => $faker->text,
+                    'commentary' => $faker->text,
+                    'user_id_pub' => $faker->numberBetween(1, 10),
+                    'subCategory_id' => $faker->numberBetween(1, 3),
+            ]);
         };
 
     }

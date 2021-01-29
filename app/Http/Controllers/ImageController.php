@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Image;
+use App\Http\Resources\Image as ImageResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,14 +16,15 @@ class ImageController extends Controller
         return Image::all();
     }
 
-    public function show(Image $image)
+    public function bounch(Article $article)
     {
-        return $image;
+        return response()->json(ImageResource::collection($article->image),200);
     }
 
-    public function image(Image $image)
+    public function show(Article $article, Image $image)
     {
-        return response()->download(public_path(Storage::url($image->image)), $image->name);
+        $image = $article->image()->where('id', $image->id)->firstOrFail();
+        return response()->json(new ImageResource($image), 200);
     }
 
     public function store(Request $request)

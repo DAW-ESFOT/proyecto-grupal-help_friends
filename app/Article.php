@@ -9,12 +9,14 @@ class Article extends Model
 {
     protected $fillable = ['name', 'description', 'commentary','subCategory_id'];
 
+    //public $timestamps = false;
+
     public static function boot()
     {
         parent::boot();
         static::creating(function ($article) {
             $article->user_id = Auth::id();
-
+            $article->subCategory_id= Auth::id();
         });
     }
 
@@ -32,4 +34,9 @@ class Article extends Model
     {
         return $this->belongsTo('App\SubCategory');
     }
+
+//    public function image(){
+//        return $this->hasMany('App\Image');
+//    }
+
 }

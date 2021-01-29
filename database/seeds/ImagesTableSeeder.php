@@ -16,11 +16,14 @@ class ImagesTableSeeder extends Seeder
         Image::truncate();
         $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 4; $i++) {
+        $articles = App\Article::all();
+        foreach ($articles as $article) {
             Image::create([
                 'name' => $faker->word,
-                'image'=> $faker->imageUrl()
+                'image' => $faker->imageUrl(),
+                'article_id' => $article->id
             ]);
+
         }
     }
 }
