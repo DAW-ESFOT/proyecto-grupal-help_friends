@@ -16,7 +16,16 @@ class Image extends Model
 //            $image->article_id = Auth::id();
 //        });
 //    }
-    protected $fillable = ['name', 'image'];
+    protected $fillable = [ 'image'];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($comentary) {
+            $comentary->user_id = Auth::id();
+
+        });
+    }
 
 
     public function article()

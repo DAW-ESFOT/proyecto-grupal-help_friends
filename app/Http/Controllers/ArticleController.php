@@ -68,6 +68,7 @@ class ArticleController extends Controller
         $request->validate([
             'name' => 'required|unique:articles|string|max:100',
             'description' => 'required',
+            'subCategory_id' => 'required',
             //'commentary' => 'required',
 
         ],self::$messages);

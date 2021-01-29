@@ -12,7 +12,7 @@ class Comment extends Model
         parent::boot();
         static::creating(function ($comentary) {
             $comentary->user_id = Auth::id();
-            $comentary->article_id = Auth::id();
+           
         });
     }
     protected $fillable = ['description'];
