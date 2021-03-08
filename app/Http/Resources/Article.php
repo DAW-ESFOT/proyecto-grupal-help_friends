@@ -19,20 +19,22 @@ class Article extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-//            'commentary' => $this->commentary,
+//          'commentary' => $this->commentary,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             //'user_id' => $this->user_id,
             //'user_id_pub' => $this->user_id_pub,
             //'subCategory_id' => $this->subCategory_id,
-           // 'image' => $this->image,
+            // 'image' => $this->image,
 
             //Rutas con links
 
             'user_publicacion' => "/api/users/".$this->user_id,
             //'user_publicacion' => "/api/articles/".$this->user_id_pub,
             'subCategory_id' => "/api/subCategory_id/".$this->subCategory_id,
+            'category_id' => "/api/category_id/".$this->category_id,
             'images' => $this->image,
+            
 
 
 

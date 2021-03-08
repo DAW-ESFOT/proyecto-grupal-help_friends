@@ -4,20 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
-use App\Category\Resources\Category as CategoryResources;
+use App\Http\Resources\Category as CategoryResources;
+use App\Http\Resources\CategoryCollection;
+
 
 class CategoryController extends Controller
 {
 
+
     public function index()
     {
-        return Category::all();
+        //return Category::all();
+        return new CategoryCollection(Category::paginate(10));
     }
-    public function show($id)
+   // public function show($id)
+//    {
+//        return response()->json(new CategoryResources($id), 200);
+//        //return Category::find($id);
+//
+//    }
+
+    public function show(Category $category)
     {
-        //return response()->json(new CategoryResources($id), 200);
-        return Category::find($id);
+        //$this->authorize('view', $category);
+        //return new ArticleResource($article);
+        //return response()->json(new CategoryResources\Resource(category),200);
+        return response()->json(new CategoryResource($category),200);
     }
+
     public function store(Request $request)
     {
         return Category::create($request->all());

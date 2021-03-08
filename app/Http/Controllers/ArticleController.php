@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use App\Http\Resources\Article as ArticleResource;
 use App\Http\Resources\ArticleCollection;
 use Illuminate\Http\Request;
@@ -40,6 +41,11 @@ class ArticleController extends Controller
         //return  response()->json(ArticleResource::collection(Articles::all()), 200);
     }
 
+    public function bounch(Category $category)
+    {
+        return response()->json(ArticleResource::collection($category->article),200);
+    }
+
     public function show(Article $article)
     {
         $this->authorize('view', $article);
@@ -47,6 +53,12 @@ class ArticleController extends Controller
         return response()->json(new ArticleResource($article),200);
     }
 
+//    public function search(Category $category)
+//    {
+//        $category->articles($category->articles)->firstOrFail();
+//        return response()->json($category, 200);
+//        return response()->json(ArticleResource::collection($category->articles), 200);
+//    }
 
     // manejar el status de los articulos
     public function updateStatus(Request $request, Article $article) {

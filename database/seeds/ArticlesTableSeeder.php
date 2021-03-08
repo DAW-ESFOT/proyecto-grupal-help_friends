@@ -32,6 +32,7 @@ class ArticlesTableSeeder extends Seeder
                     'description' => $faker->text,
 
                     'subCategory_id' => $faker->numberBetween(1, 3),
+                    'categories_id' => $faker->numberBetween(1, 3),
 
                 ]);
             }
@@ -41,6 +42,7 @@ class ArticlesTableSeeder extends Seeder
                 'commentary' => $faker->text,
                 'user_id_pub' => $faker->numberBetween(1, 10),
                 'subCategory_id' => $faker->numberBetween(1, 3),
+                'categories_id' => $faker->numberBetween(1, 3),
             ]);
         };
 
