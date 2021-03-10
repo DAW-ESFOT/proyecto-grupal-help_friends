@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Category\Resources\Category as CategoryResources;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -17,6 +18,13 @@ class CategoryController extends Controller
     {
         //return response()->json(new CategoryResources($id), 200);
         return Category::find($id);
+    }
+    public function run ($id)
+    {
+
+        $subcategory=DB::table('sub_categories')->select()->where('categories_id','=',$id)->get();
+        return response()->json($subcategory);
+
     }
     public function store(Request $request)
     {
