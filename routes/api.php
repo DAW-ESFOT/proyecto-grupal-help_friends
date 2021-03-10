@@ -21,6 +21,8 @@ Route::post('login', 'UserController@authenticate');
 Route::get('articles', 'ArticleController@index');
 Route::get('images','ImageController@index');
 Route::get('articles/{article}/comments', 'CommentController@index');
+Route::get('subcategory/{id}/articles', 'SubCategoryController@run');
+Route::get('category/{id}/subcategory', 'CategoryController@run');
 
 
 //OJO
