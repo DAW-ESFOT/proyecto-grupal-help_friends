@@ -11,7 +11,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 
 class UserController extends Controller
-{git status
+{
 
     public function authenticate(Request $request)
     {
