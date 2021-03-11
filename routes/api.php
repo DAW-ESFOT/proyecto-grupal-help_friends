@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 });*/
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
+Route::get('categories', 'CategoryController@index');
+Route::get('subcategories', 'SubCategoryController@index');
 Route::get('articles', 'ArticleController@index');
 Route::get('images','ImageController@index');
 Route::get('articles/{article}/comments', 'CommentController@index');
@@ -50,7 +52,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('images/{image}','ImageController@delete');
 
     //CATEGORIES
-    Route::get('categories', 'CategoryController@index');
+    //Route::get('categories', 'CategoryController@index');
     Route::get('categories/{category}', 'CategoryController@show');
     Route::post('categories', 'CategoryController@store');
     Route::put('categories/{category}', 'CategoryController@update');
@@ -58,7 +60,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 
     //SUBCATEGRIES
-    Route::get('subcategories', 'SubCategoryController@index');
+    //Route::get('subcategories', 'SubCategoryController@index');
     Route::get('subcategories/{subcategory}', 'SubCategoryController@show');
     Route::post('subcategories', 'SubCategoryController@store');
     Route::put('subcategories/{subcategory}', 'SubCategoryController@update');

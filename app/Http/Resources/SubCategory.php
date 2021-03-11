@@ -21,7 +21,7 @@ class SubCategory extends JsonResource
             'name' => $this->name,
            //'created_at' => $this->created_at,
             //'updated_at' => $this->updated_at,
-            //'category_id' => $this->id,
+            'category_id' => $this->categories_id,
 
            //'articles' => ArticleResource::collection($this->articles),
         ];

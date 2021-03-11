@@ -31,7 +31,7 @@ class Article extends JsonResource
 
             'user_publicacion' => "/api/users/".$this->user_id,
             //'user_publicacion' => "/api/articles/".$this->user_id_pub,
-            'subCategory_id' => "/api/subCategory_id/".$this->subCategory_id,
+            'subCategory_id' => $this->subCategory_id,
             'images' => $this->image,
 
 
