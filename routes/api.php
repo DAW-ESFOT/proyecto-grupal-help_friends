@@ -22,7 +22,6 @@ Route::get('categories', 'CategoryController@index');
 Route::get('subcategories', 'SubCategoryController@index');
 Route::get('articles', 'ArticleController@index');
 Route::get('images','ImageController@index');
-Route::get('articles/{article}/comments', 'CommentController@index');
 Route::get('subcategory/{id}/articles', 'SubCategoryController@run');
 Route::get('category/{id}/subcategory', 'CategoryController@run');
 
@@ -68,6 +67,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 
     //COMMENTS
+
+    Route::get('articles/{article}/comments', 'CommentController@index');
     Route::get('articles/{article}/comments/{comment}', 'CommentController@show');
     Route::post('articles/{article}/comments', 'CommentController@store');
     Route::put('articles/{article}/comments/{comment}', 'CommentController@update');
