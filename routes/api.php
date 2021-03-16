@@ -34,6 +34,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::get('articles/{article}', 'ArticleController@show');
     Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::post('logout', 'UserController@logout');
 //    Route::get('articles/{article}/image', 'UserController@image');
     Route::post('articles', 'ArticleController@store');
     Route::put('articles/{article}', 'ArticleController@update');
