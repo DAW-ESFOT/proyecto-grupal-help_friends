@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Article;
 use App\Http\Resources\Comment as CommentResource;
+use App\Mail\NewComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -46,10 +48,11 @@ class CommentController extends Controller
     public function store(Request $request, Article $article)
     {
         $request->validate([
-            'description' => 'required|string'
-        ]);
+           'description' => 'required|string'
+       ]);
 
         $comment = $article->comments()->save(new Comment($request->all()));
+        Mail::to($article->user)->send(new NewComment($comment));
         return response()->json($comment, 201);
     }
 
