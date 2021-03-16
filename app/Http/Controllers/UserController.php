@@ -43,7 +43,13 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'province' => 'required|string|max:100',
+            'canton' => 'required|string|max:100',
+            'sector' => 'required|string|max:100',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -51,7 +57,13 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         $user = User::create([
+            'image' => $request->get('image'),
             'name' => $request->get('name'),
+            'lastname' => $request->get('lastname'),
+            'phone' => $request->get('phone'),
+            'province' => $request->get('province'),
+            'canton' => $request->get('canton'),
+            'sector' => $request->get('sector'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
         ]);
@@ -95,7 +107,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'User successfully logged out.'
-            ],200)->withCookie(
+            ], 200)->withCookie(
                 'token',
                 null,
                 config('jwt.ttl'),
@@ -106,9 +118,9 @@ class UserController extends Controller
                 false,
                 config('app.env') !== 'local' ? 'None' : 'Lax'
             );
-        }catch (JWTException $e){
+        } catch (JWTException $e) {
             //something when wrong whilst attempting to encode the token
-            return response()->json(['message'=>'No se pudo cerrar la sesión.'],200);
+            return response()->json(['message' => 'No se pudo cerrar la sesión.'], 200);
         }
     }
 }
